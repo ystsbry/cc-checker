@@ -26,15 +26,20 @@ func main() {
 		return
 	}
 
+	cc := 1
 	ast.Inspect(astData, func(n ast.Node) bool {
 		switch n.(type) {
 		case *ast.IfStmt:
-		  fmt.Println("if statement")
+			cc++
 		case *ast.ForStmt:
-		  fmt.Println("for statement")
+			cc++
+		case *ast.SwitchStmt:
+			cc++
 		}
 		return true
 	})
+
+	fmt.Println(cc)
 }
 
 // 参考文献

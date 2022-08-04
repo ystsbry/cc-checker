@@ -26,10 +26,15 @@ func main() {
 		return
 	}
 
-	for _, d := range astData.Decls {
-        ast.Print(fset, d)
-        fmt.Println()
-    }
+	ast.Inspect(astData, func(n ast.Node) bool {
+		switch n.(type) {
+		case *ast.IfStmt:
+		  fmt.Println("if statement")
+		case *ast.ForStmt:
+		  fmt.Println("for statement")
+		}
+		return true
+	})
 }
 
 // 参考文献
